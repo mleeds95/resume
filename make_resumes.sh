@@ -8,4 +8,9 @@ pdflatex Matthew_Leeds_*_CV.tex
 pdflatex Matthew_Leeds_*_work.tex
 pdflatex Matthew_Leeds_*_research.tex
 
-rename "s/\d\d\d\d-\d\d-\d\d/`date --iso-8601`/" *.pdf *.tex
+IFS='
+'
+for file in `ls -1 *.pdf *.tex`; do
+    newname=$(echo "$file" | sed "s/[0-9]\{4\}\+-[0-9]\{2\}\+-[0-9]\{2\}\+/$(date --iso-8601)/")
+    mv "$file" "$newname"
+done
