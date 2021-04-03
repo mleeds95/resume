@@ -13,5 +13,7 @@ IFS='
 '
 for file in `ls -1 *.pdf *.tex`; do
     newname=$(echo "$file" | sed "s/[0-9]\{4\}\+-[0-9]\{2\}\+-[0-9]\{2\}\+/$(date --iso-8601)/")
-    mv "$file" "$newname"
+    if [ "$file" != "$newname" ]; then
+        mv "$file" "$newname"
+    fi
 done
